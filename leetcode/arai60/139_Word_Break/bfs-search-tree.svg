@@ -1,0 +1,120 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- タイトル -->
+  <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">
+    BFS探索木: "catsanddog"
+  </text>
+  <text x="400" y="55" text-anchor="middle" font-size="14" fill="#666">
+    wordDict = ["cat", "cats", "and", "sand", "dog"]
+  </text>
+  
+  <!-- ノード定義 -->
+  <defs>
+    <!-- 通常のノード -->
+    <circle id="node" r="30" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+    <!-- 訪問済みノード -->
+    <circle id="visited-node" r="30" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+    <!-- 成功ノード -->
+    <circle id="success-node" r="30" fill="#e8f5e9" stroke="#388e3c" stroke-width="3"/>
+  </defs>
+  
+  <!-- エッジ（探索パス） -->
+  <!-- 位置0 → 位置3 (cat) -->
+  <line x1="200" y1="130" x2="130" y2="210" stroke="#1976d2" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="140" y="165" font-size="12" fill="#1976d2">"cat"</text>
+  
+  <!-- 位置0 → 位置4 (cats) -->
+  <line x1="200" y1="130" x2="270" y2="210" stroke="#1976d2" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="165" font-size="12" fill="#1976d2">"cats"</text>
+  
+  <!-- 位置3 → 位置7 (sand) -->
+  <line x1="100" y1="250" x2="100" y2="330" stroke="#1976d2" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="110" y="295" font-size="12" fill="#1976d2">"sand"</text>
+  
+  <!-- 位置4 → 位置7 (and) - 破線で表示 -->
+  <line x1="270" y1="250" x2="130" y2="350" stroke="#f57c00" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="200" y="310" font-size="12" fill="#f57c00">"and"</text>
+  <text x="195" y="325" font-size="10" fill="#f57c00">(既訪問)</text>
+  
+  <!-- 位置7 → 位置10 (dog) -->
+  <line x1="100" y1="390" x2="100" y2="470" stroke="#388e3c" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+  <text x="110" y="435" font-size="12" fill="#388e3c">"dog"</text>
+  
+  <!-- 矢印の定義 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#1976d2"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#388e3c"/>
+    </marker>
+  </defs>
+  
+  <!-- ノード -->
+  <!-- 位置0 (開始) -->
+  <use href="#node" x="200" y="100"/>
+  <text x="200" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">0</text>
+  <text x="200" y="120" text-anchor="middle" font-size="10" fill="#666">開始</text>
+  
+  <!-- 位置3 -->
+  <use href="#node" x="100" y="240"/>
+  <text x="100" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">3</text>
+  <text x="100" y="260" text-anchor="middle" font-size="10" fill="#666">"s..."</text>
+  
+  <!-- 位置4 -->
+  <use href="#node" x="300" y="240"/>
+  <text x="300" y="245" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">4</text>
+  <text x="300" y="260" text-anchor="middle" font-size="10" fill="#666">"a..."</text>
+  
+  <!-- 位置7 (訪問済み) -->
+  <use href="#visited-node" x="100" y="360"/>
+  <text x="100" y="365" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">7</text>
+  <text x="100" y="380" text-anchor="middle" font-size="10" fill="#666">"dog"</text>
+  
+  <!-- 位置10 (成功) -->
+  <use href="#success-node" x="100" y="500"/>
+  <text x="100" y="505" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">10</text>
+  <text x="100" y="520" text-anchor="middle" font-size="10" fill="#388e3c">終端</text>
+  
+  <!-- BFS探索順序の説明 -->
+  <g transform="translate(450, 150)">
+    <rect x="0" y="0" width="300" height="400" fill="white" stroke="#ddd" stroke-width="1" rx="5"/>
+    <text x="150" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">BFS探索順序</text>
+    
+    <!-- ステップ1 -->
+    <text x="20" y="60" font-size="14" font-weight="bold" fill="#333">ステップ 1:</text>
+    <text x="30" y="80" font-size="12" fill="#666">キュー: [0]</text>
+    <text x="30" y="95" font-size="12" fill="#666">位置0から探索</text>
+    <text x="30" y="110" font-size="12" fill="#1976d2">→ 3 (cat), 4 (cats) を追加</text>
+    
+    <!-- ステップ2 -->
+    <text x="20" y="140" font-size="14" font-weight="bold" fill="#333">ステップ 2:</text>
+    <text x="30" y="160" font-size="12" fill="#666">キュー: [3, 4]</text>
+    <text x="30" y="175" font-size="12" fill="#666">位置3から探索</text>
+    <text x="30" y="190" font-size="12" fill="#1976d2">→ 7 (sand) を追加</text>
+    
+    <!-- ステップ3 -->
+    <text x="20" y="220" font-size="14" font-weight="bold" fill="#333">ステップ 3:</text>
+    <text x="30" y="240" font-size="12" fill="#666">キュー: [4, 7]</text>
+    <text x="30" y="255" font-size="12" fill="#666">位置4から探索</text>
+    <text x="30" y="270" font-size="12" fill="#f57c00">→ 7 (and) は既に訪問済み</text>
+    
+    <!-- ステップ4 -->
+    <text x="20" y="300" font-size="14" font-weight="bold" fill="#333">ステップ 4:</text>
+    <text x="30" y="320" font-size="12" fill="#666">キュー: [7]</text>
+    <text x="30" y="335" font-size="12" fill="#666">位置7から探索</text>
+    <text x="30" y="350" font-size="12" fill="#388e3c">→ 10 (dog) で終端到達！</text>
+    
+    <!-- 凡例 -->
+    <line x1="20" y1="380" x2="280" y2="380" stroke="#ddd"/>
+    <text x="20" y="395" font-size="12" fill="#666">凡例: 数字は文字列のインデックス</text>
+  </g>
+  
+  <!-- 文字列の可視化 -->
+  <g transform="translate(50, 550)">
+    <text font-size="12" fill="#666">文字列: c a t s a n d d o g</text>
+    <text y="15" font-size="12" fill="#666">インデックス: 0 1 2 3 4 5 6 7 8 9 10</text>
+  </g>
+</svg>
