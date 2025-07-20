@@ -1,6 +1,6 @@
 # 104. Maximum Depth of Binary Tree
-問題: https://leetcode.com/problems/maximum-depth-of-binary-tree/
-言語: Python
+* 問題: https://leetcode.com/problems/maximum-depth-of-binary-tree/
+* 言語: Python
 
 # Step1
 * 二分木の最大の深さ（高さ）を求める
