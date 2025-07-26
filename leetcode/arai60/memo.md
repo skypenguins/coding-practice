@@ -60,10 +60,33 @@ class Solution:
     - ref. https://github.com/ichika0615/arai60/pull/17#discussion_r2019099632
     - ref. https://github.com/ichika0615/arai60/pull/17/files#r2020138924
       - 時間計算量: $O(n \log n)$
-      -  $$\begin{align*}T(n) &= 2T(n/2) + cn \\ &= 2[2T(n/4) + cn/2] + cn \\ &= 4T(n/4) + cn + cn \\ &= 4T(n/4) + 2cn \\ &= 4[2T(n/8) + cn/4] + 2cn \\ &= 8T(n/8) + cn + 2cn \\ &= 8T(n/8) + 3cn \\ &... \\ &= 2^k T(n/2^k) + k×cn \\\end{align*}$$
-      - 終了条件: $n/2^k = 1$ のとき（つまり $k = \log_2 n$ ）
-      - $$\begin{align*}T(n) &= 2^{\log_2 n} × T(1) + cn × \log_2 n \\ &= n × T(1) + cn × \log_2 n  \\ &= O(n) + O(n \log n) \\ &= O(n \log n) \end{align*}$$
-      - 直観的には、木の高さごとの $n$ 回の走査×再帰の深さ $\log n$ で $n\log n$
+
+$$
+\begin{align*}
+T(n) &= 2T(n/2) + cn \\
+&= 2[2T(n/4) + cn/2] + cn \\
+&= 4T(n/4) + cn + cn \\
+&= 4T(n/4) + 2cn \\
+&= 4[2T(n/8) + cn/4] + 2cn \\
+&= 8T(n/8) + cn + 2cn \\
+&= 8T(n/8) + 3cn \\
+&... \\
+&= 2^k T(n/2^k) + k×cn \\
+\end{align*}
+$$
+
+* 終了条件: $n/2^k = 1$ のとき（つまり $k = \log_2 n$ ）
+
+$$
+\begin{align*}
+T(n) &= 2^{\log_2 n} × T(1) + cn × \log_2 n \\
+&= n × T(1) + cn × \log_2 n  \\
+&= O(n) + O(n \log n) \\
+&= O(n \log n)
+\end{align*}
+$$
+
+* 直観的には、木の高さごとの $n$ 回の走査×再帰の深さ $\log n$ で $n\log n$
 
 # Step3
 * 再帰DFS
