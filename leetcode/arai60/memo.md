@@ -75,7 +75,7 @@ class Solution:
         return profit
 ```
 
-# Step3
+## Step3
 ```py
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
