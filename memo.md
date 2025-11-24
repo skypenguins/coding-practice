@@ -172,3 +172,32 @@ class Solution:
   - 1回目: 2:35
   - 2回目: 2:43
   - 3回目: 3:08
+
+## Step4
+- 問題文にconstant extra memoryとあったのを見落としていたので、修正
+```py
+class Solution:
+    def nextPermutation(self, nums):
+        pivot = -1
+
+        for i in range(len(nums) - 2, -1, -1):
+            if nums[i] < nums[i+1]:
+                pivot = i
+                break
+        
+        if pivot == -1:
+            nums.reverse() 
+            return
+        
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] > nums[pivot]:
+                nums[i], nums[pivot] = nums[pivot], nums[i]
+
+                left = pivot + 1
+                right = len(nums) - 1
+                while left < right:
+                    nums[left], nums[right] = nums[right], nums[left]
+                    left += 1
+                    right -= 1
+                return
+```
